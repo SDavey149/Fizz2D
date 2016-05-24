@@ -1,0 +1,4 @@
+1. shift entire world across a timestep or multiple timesteps in one method call, instead of shifting world forward
+for each element
+
+2. apply universal gravitational force
