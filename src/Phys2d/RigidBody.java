@@ -26,7 +26,7 @@ public class RigidBody extends Body {
 
         if (useGravity)
             forceToApply.add(object.getGravitationalForce());
-        object.getAcceleration().set(0, 0);
+        object.getAcceleration().set(0);
         if (forceToApply.mag() > 0) {
             object.getAcceleration().addScaled(forceToApply, 1/mass);
         }

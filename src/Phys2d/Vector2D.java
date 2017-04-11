@@ -3,22 +3,17 @@ package Phys2d;
 import java.io.Serializable;
 
 public final class Vector2D implements Serializable {
-    // mutable 2D vectors
-
     public double x, y;
 
-    // create a null vector
     public Vector2D() {
         this(0, 0);
     }
 
-    // create vector with given coordinates
     public Vector2D(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    // create new vector that is a copy of the argument
     public Vector2D(Vector2D v) {
         this(v.x, v.y);
     }
@@ -31,6 +26,11 @@ public final class Vector2D implements Serializable {
     public void set(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void set(double val) {
+        this.x = val;
+        this.y = val;
     }
 
     public boolean equals(Object o) {
@@ -69,15 +69,10 @@ public final class Vector2D implements Serializable {
         this.y += y;
     }
 
-    // scaled addition - surprisingly useful
-    // note: vector subtraction can be expressed as scaled addition with factor
-    // (-1)
     public void addScaled(Vector2D v, double fac) {
         this.x += v.x * fac;
         this.y += v.y * fac;
     }
-
-
 
     public void mult(double fac) {
         this.x *= fac;
@@ -99,7 +94,6 @@ public final class Vector2D implements Serializable {
         return Math.hypot(x - v.x, y - v.y);
     }
 
-
     public void normalise() {
         double len = mag();
         x /= len;
@@ -107,9 +101,6 @@ public final class Vector2D implements Serializable {
     }
 
     public void divide(double operand) {
-        /**
-         * Element wise division
-         */
         x = x/operand;
         y = y/operand;
 
@@ -119,12 +110,9 @@ public final class Vector2D implements Serializable {
         return Math.atan2(y, x);
     }
 
-
-
     public static Vector2D minus(Vector2D v1, Vector2D v2) {
         return new Vector2D(v1.x - v2.x, v1.y - v2.y);
     }
-
 
     public Vector2D rotate90degreesAnticlockwise() {
         return new Vector2D(-y,x);
