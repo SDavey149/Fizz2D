@@ -1,9 +1,11 @@
 package Phys2d;
 
+import utilities.Vector2D;
+
 /**
  * Created by scottdavey on 08/02/2016.
  */
-public class GameObject {
+public class  GameObject {
     private Vector2D position;
     private Vector2D velocity;
     private Vector2D acceleration;

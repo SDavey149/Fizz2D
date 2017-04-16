@@ -1,4 +1,4 @@
-package Phys2d;
+package utilities;
 
 import java.io.Serializable;
 
@@ -116,5 +116,10 @@ public final class Vector2D implements Serializable {
 
     public Vector2D rotate90degreesAnticlockwise() {
         return new Vector2D(-y,x);
+    }
+
+    public void elementWiseMult(Vector2D multiplier) {
+        this.x = this.x*multiplier.x;
+        this.y = this.y*multiplier.y;
     }
 }

@@ -1,5 +1,7 @@
 package Phys2d;
 
+import utilities.Vector2D;
+
 import java.util.ArrayList;
 import java.util.List;
 
