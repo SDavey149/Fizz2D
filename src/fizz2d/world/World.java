@@ -27,6 +27,13 @@ public class World {
 
     public void update(double delta) {
         delta = delta/NUM_EULER;
+        for (int i = 0; i < NUM_EULER; i++) {
+            updateGameObjects(delta);
+        }
+
+    }
+
+    private void updateGameObjects(double delta) {
         for (Particle particle : particles) {
             particle.update(delta);
         }

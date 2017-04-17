@@ -14,7 +14,6 @@ public class Eulers implements IUpdateIntegrator {
 
         p.getPosition().addScaled(p.getVelocity(), delta);
         p.getVelocity().addScaled(p.getAcceleration(), delta);
-
         imposeDrag(delta, p);
         p.getForceAccumulated().set(0);
     }

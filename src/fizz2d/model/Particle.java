@@ -1,5 +1,6 @@
 package fizz2d.model;
 
+import fizz2d.model.integrators.Eulers;
 import fizz2d.model.integrators.IUpdateIntegrator;
 import utilities.Vector2D;
 
@@ -13,19 +14,23 @@ public class Particle {
     protected Vector2D position;
     protected Vector2D velocity;
     protected Vector2D forceAccumulator;
+    protected Vector2D repeatableForce;
     protected double inverseMass;
     protected double dragDamping;
 
-    public Particle(double mass) {
-        this(new Vector2D(), mass);
+    public Particle(double radius, double mass) {
+        this(radius, new Vector2D(), mass);
     }
 
-    public Particle(Vector2D position, double mass) {
+    public Particle(double radius, Vector2D position, double mass) {
         this.position = position;
         this.inverseMass = 1/mass;
         dragDamping = 1;
         this.velocity = new Vector2D();
         this.forceAccumulator = new Vector2D();
+        this.repeatableForce = new Vector2D();
+        this.radius = radius;
+        integrator = new Eulers();
     }
 
     //region GETTERS
@@ -54,10 +59,21 @@ public class Particle {
     public double getDrag() {
         return dragDamping;
     }
+
+    public double getRadius() { return radius; }
     //endregion
 
     public void update(double delta) {
+        forceAccumulator.add(repeatableForce);
         integrator.update(delta, this);
+    }
+
+    public void addRepeatableForce(Vector2D force) {
+        repeatableForce.add(force);
+    }
+
+    public void addForce(Vector2D force) {
+        forceAccumulator.add(force);
     }
 
 

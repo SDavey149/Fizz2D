@@ -1,5 +1,6 @@
 package bouncingBallDemo.views;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import fizz2d.model.Particle;
 import utilities.Vector2D;
 
@@ -13,12 +14,20 @@ public class Ball implements IGameObjectView {
     private Particle particle;
 
     public Ball(double xScale, double yScale) {
-        particle = new Particle(10);
+        particle = new Particle(10, 1);
+        particle.getPosition().set(300, 300);
+        particle.addRepeatableForce(new Vector2D(0, -10));
+        this.xScale = xScale;
+        this.yScale = yScale;
     }
 
     @Override
     public void draw(Graphics2D g) {
-        int x =
+        int x = (int) (particle.getPosition().x*xScale);
+        int y = (int) (600-particle.getPosition().y*yScale);
+        g.setColor(Color.CYAN);
+        double radius = particle.getRadius()*Math.min(yScale, xScale);
+        g.fillOval((int)(x - radius), (int)(y - radius), (int)(2 * radius), (int)(2 * radius));
     }
 
     @Override
