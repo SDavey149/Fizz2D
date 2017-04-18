@@ -14,8 +14,9 @@ public class Ball implements IGameObjectView {
     private Particle particle;
 
     public Ball(double xScale, double yScale) {
-        particle = new Particle(10, 1);
-        particle.getPosition().set(300, 300);
+        particle = new Particle(2, 1);
+        particle.getPosition().set(30, 30);
+        particle.getVelocity().set(new Vector2D(5,0));
         particle.addRepeatableForce(new Vector2D(0, -10));
         this.xScale = xScale;
         this.yScale = yScale;

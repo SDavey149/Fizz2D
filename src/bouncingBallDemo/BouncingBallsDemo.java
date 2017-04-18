@@ -15,12 +15,12 @@ public final class BouncingBallsDemo {
     public static void main(String[] args) {
         BouncingBallsDemo demo = new BouncingBallsDemo();
         JEasyFrame frame = new JEasyFrame(demo.view, "Bouncing Ball Demo");
-        frame.setSize(800, 600);
+        frame.setSize(800, 625);
         demo.gameLoop();
     }
 
     private BouncingBallsDemo() {
-        Vector2D worldSize = new Vector2D(800,600);
+        Vector2D worldSize = new Vector2D(80,60);
         world = new World(worldSize);
         Vector2D viewScale = new Vector2D(800/worldSize.x,
                             600/worldSize.y);
@@ -38,6 +38,14 @@ public final class BouncingBallsDemo {
 
             world.update(delta);
             view.repaint();
+
+            long frameLength = System.currentTimeMillis()-lastFrameTime;
+            try {
+                Thread.sleep(20-frameLength);
+            } catch (InterruptedException e) {
+                //no operation
+            }
+
         }
     }
 
