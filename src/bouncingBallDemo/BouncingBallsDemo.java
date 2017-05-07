@@ -1,9 +1,13 @@
 package bouncingBallDemo;
 
 import bouncingBallDemo.views.Ball;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
+import fizz2d.model.integrators.ImprovedEulers;
 import fizz2d.world.World;
 import utilities.JEasyFrame;
 import utilities.Vector2D;
+
+import java.awt.*;
 
 /**
  * Created by scottdavey on 11/04/2017.
@@ -11,6 +15,7 @@ import utilities.Vector2D;
 public final class BouncingBallsDemo {
     public World world;
     public BouncingBallView view;
+    private static final long TIME_BETWEEN_FRAME = 1000/60;
 
     public static void main(String[] args) {
         BouncingBallsDemo demo = new BouncingBallsDemo();
@@ -30,18 +35,11 @@ public final class BouncingBallsDemo {
     }
 
     public void gameLoop() {
-        long lastFrameTime = System.currentTimeMillis()-30;
         while (true) {
-            long currentTime = System.currentTimeMillis();
-            double delta = (currentTime - lastFrameTime)/1000.0;
-            lastFrameTime = currentTime;
-
-            world.update(delta);
+            world.update(0.016);
             view.repaint();
-
-            long frameLength = System.currentTimeMillis()-lastFrameTime;
             try {
-                Thread.sleep(20-frameLength);
+               Thread.sleep(TIME_BETWEEN_FRAME);
             } catch (InterruptedException e) {
                 //no operation
             }
@@ -50,8 +48,13 @@ public final class BouncingBallsDemo {
     }
 
     private void setupGame(Vector2D scale) {
-        Ball ball = new Ball(scale.x, scale.y);
+        Ball ball = new Ball(scale.x, scale.y, Color.CYAN);
+        Ball ball2 = new Ball(scale.x, scale.y, Color.RED);
+        ball2.setIntegrator(new ImprovedEulers());
+
         world.addGameObject(ball.getParticle());
+        world.addGameObject(ball2.getParticle());
         view.AddGameObject(ball);
+        view.AddGameObject(ball2);
     }
 }

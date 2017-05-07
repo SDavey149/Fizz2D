@@ -33,7 +33,7 @@ public class Particle {
         integrator = new Eulers();
     }
 
-    //region GETTERS
+    //region GETTERS & SETTERS
     public Vector2D getPosition() {
         return position;
     }
@@ -61,6 +61,10 @@ public class Particle {
     }
 
     public double getRadius() { return radius; }
+
+    public void setIntegrator(IUpdateIntegrator integrator) {
+        this.integrator = integrator;
+    }
     //endregion
 
     public void update(double delta) {
