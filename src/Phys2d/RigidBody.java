@@ -1,30 +1,30 @@
 package Phys2d;
 
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 /**
  * Created by scottdavey on 02/03/2016.
  */
 public class RigidBody extends Body {
 
-    private Vector2D forceToApply;
+    private Vector2 forceToApply;
     private double mass;
     private boolean useGravity;
-    private Vector2D frictionForce;
+    private Vector2 frictionForce;
 
     public RigidBody(GameObject obj) {
         super(obj);
         this.mass = obj.mass;
-        forceToApply = new Vector2D();
-        frictionForce = new Vector2D();
+        forceToApply = new Vector2();
+        frictionForce = new Vector2();
         useGravity = true;
     }
 
     @Override
     public void update(double delta) {
         //a copy of forces to apply for improved euler, incase custom forces used
-        Vector2D forceToApply2 = new Vector2D(forceToApply);
+        Vector2 forceToApply2 = new Vector2(forceToApply);
 
         if (useGravity)
             forceToApply.add(object.getGravitationalForce());
@@ -33,13 +33,13 @@ public class RigidBody extends Body {
             object.getAcceleration().addScaled(forceToApply, 1/mass);
         }
 
-        Vector2D vel2=new Vector2D(object.getVelocity());
-        Vector2D pos2=new Vector2D(object.getPosition());
+        Vector2 vel2=new Vector2(object.getVelocity());
+        Vector2 pos2=new Vector2(object.getPosition());
 
         //1 step ahead
         pos2.addScaled(object.getVelocity(), delta);
         vel2.addScaled(object.getAcceleration(), delta);
-        Vector2D acc2=new Vector2D();
+        Vector2 acc2=new Vector2();
         if (useGravity)
             forceToApply2.add(object.getGravitationalForceStepAhead(pos2, mass));
         if (forceToApply2.mag() > 0) {
@@ -53,19 +53,19 @@ public class RigidBody extends Body {
         object.getPosition().addScaled(vel2, delta);
         object.getVelocity().addScaled(acc2, delta);
 
-        forceToApply = new Vector2D();
+        forceToApply = new Vector2();
     }
 
 
-    private Vector2D getParticleWeight() {
-        return new Vector2D(0, -World.gravity*mass);
+    private Vector2 getParticleWeight() {
+        return new Vector2(0, -World.gravity*mass);
     }
 
     public boolean collidesWith(GameObject o1, GameObject o2) {
         return false;
     }
 
-    public void addForce(Vector2D force) {
+    public void addForce(Vector2 force) {
         forceToApply.add(force);
     }
 
@@ -73,7 +73,7 @@ public class RigidBody extends Body {
         useGravity = gravity;
     }
 
-    public Vector2D getFrictionForce() {
+    public Vector2 getFrictionForce() {
         return frictionForce;
     }
 }

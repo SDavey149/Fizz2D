@@ -1,6 +1,6 @@
 package Phys2d;
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 /**
  * Created by scottdavey on 06/03/2016.
@@ -20,8 +20,8 @@ public class Circle extends Shape {
         //collision with another ball
         if (shape instanceof Circle) {
             Circle otherShape = (Circle) shape;
-            Vector2D vecFrom1to2 = Vector2D.minus(otherObj.getPosition(), object.getPosition());
-            boolean movingTowardsEachOther = Vector2D.minus(otherObj.getVelocity(),
+            Vector2 vecFrom1to2 = Vector2.minus(otherObj.getPosition(), object.getPosition());
+            boolean movingTowardsEachOther = Vector2.minus(otherObj.getVelocity(),
                     object.getVelocity()).scalarProduct(vecFrom1to2)<0;
 
             return vecFrom1to2.mag()<getRadius()+otherShape.getRadius() && movingTowardsEachOther;

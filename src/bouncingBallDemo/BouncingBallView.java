@@ -1,8 +1,7 @@
 package bouncingBallDemo;
 
 import bouncingBallDemo.views.IGameObjectView;
-import fizz2d.world.World;
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +13,10 @@ import java.util.List;
  */
 public class BouncingBallView extends JComponent {
     private int resolutionX, resolutionY;
-    Vector2D scale;
+    Vector2 scale;
     private List<IGameObjectView> renders;
 
-    public BouncingBallView(int resolutionX, int resolutionY, Vector2D scale) {
+    public BouncingBallView(int resolutionX, int resolutionY, Vector2 scale) {
         this.resolutionX = resolutionX;
         this.resolutionY = resolutionY;
         this.scale = scale;

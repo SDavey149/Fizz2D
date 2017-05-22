@@ -1,6 +1,6 @@
 package Phys2d;
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 /**
  * Created by scottdavey on 06/03/2016.
@@ -16,13 +16,13 @@ public class Line extends Shape {
         this.thickness = thickness;
     }
 
-    public static Line getLineObject(Vector2D start, Vector2D end) {
-        Vector2D midpoint = new Vector2D(start);
+    public static Line getLineObject(Vector2 start, Vector2 end) {
+        Vector2 midpoint = new Vector2(start);
         start.mult(-1);
         end.add(start);
-        Vector2D line = end; //rename to line
+        Vector2 line = end; //rename to line
 
-        Vector2D half = new Vector2D(line);
+        Vector2 half = new Vector2(line);
         half.mult(0.5);
         midpoint.add(half);
 
@@ -43,29 +43,29 @@ public class Line extends Shape {
     }
 
     private boolean overlapWith(Circle circle) {
-        Vector2D start = startOfLine();
-        Vector2D tangent = Vector2D.minus(endOfLine(), start);
+        Vector2 start = startOfLine();
+        Vector2 tangent = Vector2.minus(endOfLine(), start);
         double length = tangent.mag();
         tangent.normalise();
-        Vector2D normal = tangent.rotate90degreesAnticlockwise();
+        Vector2 normal = tangent.rotate90degreesAnticlockwise();
 
-        Vector2D lineToC = Vector2D.minus(circle.object.getPosition(), start);
+        Vector2 lineToC = Vector2.minus(circle.object.getPosition(), start);
         double distNormal = Math.abs(lineToC.scalarProduct(normal));
         double distLine = lineToC.scalarProduct(tangent);
         return distNormal <= circle.getRadius() && distLine >= 0 && distLine <= length;
     }
 
 
-    public Vector2D startOfLine() {
+    public Vector2 startOfLine() {
         double startX = object.getPosition().x - length/2;
         double startY = object.getPosition().y;
-        Vector2D start = new Vector2D(startX, startY);
-        Vector2D rotationVec = object.getRotation();
+        Vector2 start = new Vector2(startX, startY);
+        Vector2 rotationVec = object.getRotation();
         double rotation = Math.atan2(rotationVec.y, rotationVec.x);
         if (rotation == 0) {
             return start;
         }
-        Vector2D pos = new Vector2D(object.getPosition());
+        Vector2 pos = new Vector2(object.getPosition());
         pos.mult(-1);
         start.add(pos);
         start.rotate(rotation);
@@ -74,16 +74,16 @@ public class Line extends Shape {
         return start;
     }
 
-    public Vector2D endOfLine() {
+    public Vector2 endOfLine() {
         double endX = object.getPosition().x + length/2;
         double endY = object.getPosition().y;
-        Vector2D end = new Vector2D(endX, endY);
-        Vector2D rotationVec = object.getRotation();
+        Vector2 end = new Vector2(endX, endY);
+        Vector2 rotationVec = object.getRotation();
         double rotation = Math.atan2(rotationVec.y, rotationVec.x);
         if (rotation == 0) {
             return end;
         }
-        Vector2D pos = new Vector2D(object.getPosition());
+        Vector2 pos = new Vector2(object.getPosition());
         pos.mult(-1);
         end.add(pos);
         end.rotate(rotation);

@@ -1,15 +1,15 @@
 package Phys2d;
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 /**
  * Created by scottdavey on 08/02/2016.
  */
 public class  GameObject {
-    private Vector2D position;
-    private Vector2D velocity;
-    private Vector2D acceleration;
-    private Vector2D rotation;
+    private Vector2 position;
+    private Vector2 velocity;
+    private Vector2 acceleration;
+    private Vector2 rotation;
     private Shape shape;
     public double mass;
     private Body body;
@@ -17,12 +17,12 @@ public class  GameObject {
     private CollideCallback collider;
     public String tag = "Unknown";
 
-    public GameObject(Vector2D pos, CollideCallback collider) {
+    public GameObject(Vector2 pos, CollideCallback collider) {
         position = pos;
         this.body = new Body(this);
-        velocity = new Vector2D();
-        acceleration = new Vector2D();
-        rotation = new Vector2D(1,0);
+        velocity = new Vector2();
+        acceleration = new Vector2();
+        rotation = new Vector2(1,0);
         this.collider = collider;
     }
 
@@ -38,7 +38,7 @@ public class  GameObject {
         return shape;
     }
 
-    public Vector2D getRotation() {
+    public Vector2 getRotation() {
         return rotation;
     }
 
@@ -46,7 +46,7 @@ public class  GameObject {
         rotation.rotate(theta);
     }
 
-    public Vector2D getPosition() {
+    public Vector2 getPosition() {
         return position;
     }
 
@@ -66,33 +66,33 @@ public class  GameObject {
         return body;
     }
 
-    public Vector2D getGravitationalForce() {
+    public Vector2 getGravitationalForce() {
         if (world != null) {
             return world.getGravitationalForce(this, this.getPosition(), this.mass);
         }
-        return new Vector2D(0,0);
+        return new Vector2(0,0);
     }
 
-    public Vector2D getGravitationalForceStepAhead(Vector2D position, double mass) {
+    public Vector2 getGravitationalForceStepAhead(Vector2 position, double mass) {
         if (world != null) {
             return world.getGravitationalForce(this, position, mass);
         }
-        return new Vector2D(0,0);
+        return new Vector2(0,0);
     }
 
-    public Vector2D getVelocity() {
+    public Vector2 getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(Vector2D velocity) {
+    public void setVelocity(Vector2 velocity) {
         this.velocity = velocity;
     }
 
-    public Vector2D getAcceleration() {
+    public Vector2 getAcceleration() {
         return acceleration;
     }
 
-    public void setAcceleration(Vector2D acc) {
+    public void setAcceleration(Vector2 acc) {
         acceleration = acc;
     }
 

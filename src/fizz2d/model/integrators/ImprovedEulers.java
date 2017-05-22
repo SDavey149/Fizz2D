@@ -1,7 +1,7 @@
 package fizz2d.model.integrators;
 
 import fizz2d.model.Particle;
-import utilities.Vector2D;
+import utilities.Vector2;
 
 /**
  * Created by scottdavey on 16/04/2017.
@@ -22,15 +22,15 @@ public class ImprovedEulers implements IUpdateIntegrator {
             return;
         }
 
-        Vector2D acceleration = new Vector2D();
+        Vector2 acceleration = new Vector2();
         acceleration.addScaled(p.getForceAccumulated(), p.getInverseMass());
         p.getAcceleration().set(acceleration);
     }
 
     private void updatePositionAndVelocity(double delta, Particle p) {
-        Vector2D positionCopy = new Vector2D(p.getPosition());
-        Vector2D velocityCopy = new Vector2D(p.getVelocity());
-        Vector2D acceleration = new Vector2D(p.getAcceleration());
+        Vector2 positionCopy = new Vector2(p.getPosition());
+        Vector2 velocityCopy = new Vector2(p.getVelocity());
+        Vector2 acceleration = new Vector2(p.getAcceleration());
 
         positionCopy.addScaled(p.getVelocity(), delta);
         velocityCopy.addScaled(p.getAcceleration(), delta);

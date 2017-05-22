@@ -2,23 +2,23 @@ package utilities;
 
 import java.io.Serializable;
 
-public final class Vector2D implements Serializable {
+public final class Vector2 implements Serializable {
     public double x, y;
 
-    public Vector2D() {
+    public Vector2() {
         this(0, 0);
     }
 
-    public Vector2D(double x, double y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public Vector2D(Vector2D v) {
+    public Vector2(Vector2 v) {
         this(v.x, v.y);
     }
 
-    public void set(Vector2D v) {
+    public void set(Vector2 v) {
         this.x = v.x;
         this.y = v.y;
     }
@@ -34,8 +34,8 @@ public final class Vector2D implements Serializable {
     }
 
     public boolean equals(Object o) {
-        if (o instanceof Vector2D) {
-            Vector2D v = (Vector2D) o;
+        if (o instanceof Vector2) {
+            Vector2 v = (Vector2) o;
             return x == v.x && y == v.y;
         } else
             return false;
@@ -50,7 +50,7 @@ public final class Vector2D implements Serializable {
     }
 
     // angle of difference vector between this vector and other vector
-    public double angle(Vector2D other) {
+    public double angle(Vector2 other) {
         return Math.atan2(other.y - y, other.x - x);
     }
 
@@ -59,7 +59,7 @@ public final class Vector2D implements Serializable {
                 + ")";
     }
 
-    public void add(Vector2D v) {
+    public void add(Vector2 v) {
         this.x += v.x;
         this.y += v.y;
     }
@@ -69,7 +69,7 @@ public final class Vector2D implements Serializable {
         this.y += y;
     }
 
-    public void addScaled(Vector2D v, double fac) {
+    public void addScaled(Vector2 v, double fac) {
         this.x += v.x * fac;
         this.y += v.y * fac;
     }
@@ -86,11 +86,11 @@ public final class Vector2D implements Serializable {
         y = yn;
     }
 
-    public double scalarProduct(Vector2D v) {
+    public double scalarProduct(Vector2 v) {
         return x * v.x + y * v.y;
     }
 
-    public double dist(Vector2D v) {
+    public double dist(Vector2 v) {
         return Math.hypot(x - v.x, y - v.y);
     }
 
@@ -110,15 +110,15 @@ public final class Vector2D implements Serializable {
         return Math.atan2(y, x);
     }
 
-    public static Vector2D minus(Vector2D v1, Vector2D v2) {
-        return new Vector2D(v1.x - v2.x, v1.y - v2.y);
+    public static Vector2 minus(Vector2 v1, Vector2 v2) {
+        return new Vector2(v1.x - v2.x, v1.y - v2.y);
     }
 
-    public Vector2D rotate90degreesAnticlockwise() {
-        return new Vector2D(-y,x);
+    public Vector2 rotate90degreesAnticlockwise() {
+        return new Vector2(-y,x);
     }
 
-    public void elementWiseMult(Vector2D multiplier) {
+    public void elementWiseMult(Vector2 multiplier) {
         this.x = this.x*multiplier.x;
         this.y = this.y*multiplier.y;
     }
