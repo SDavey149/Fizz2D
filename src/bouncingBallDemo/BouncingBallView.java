@@ -6,6 +6,7 @@ import utilities.Vector2D;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +32,13 @@ public class BouncingBallView extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D graphics = (Graphics2D) g;
-        enableGraphicsSettings(graphics);
-        paintBackground(graphics);
-        paintGameObjects(graphics);
+        //BufferedImage bufferImage = new BufferedImage(resolutionX,resolutionY,BufferedImage.TYPE_INT_RGB);
+        //Graphics2D g2 = (Graphics2D)bufferImage.getGraphics();
+        Graphics2D g2 = (Graphics2D)g;
+        enableGraphicsSettings(g2);
+        paintBackground(g2);
+        paintGameObjects(g2);
+        //g.drawImage(bufferImage, 0, 0, null);
     }
 
     private void enableGraphicsSettings(Graphics2D g) {

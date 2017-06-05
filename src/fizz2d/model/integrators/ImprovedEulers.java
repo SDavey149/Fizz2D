@@ -39,7 +39,7 @@ public class ImprovedEulers implements IUpdateIntegrator {
         velocityCopy.add(p.getVelocity());
         velocityCopy.mult(0.5);
 
-        //constant acceleration is not always true, needs changing
+        //constant acceleration is not always true, needs changing and researching
         acceleration.add(p.getAcceleration());
         acceleration.mult(0.5);
 

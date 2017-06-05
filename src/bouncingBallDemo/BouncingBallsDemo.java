@@ -1,7 +1,6 @@
 package bouncingBallDemo;
 
 import bouncingBallDemo.views.Ball;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import fizz2d.model.integrators.ImprovedEulers;
 import fizz2d.world.World;
 import utilities.JEasyFrame;

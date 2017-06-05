@@ -1,8 +1,10 @@
 package utilities;
 
+import org.jogamp.glg2d.GLG2DCanvas;
+
 import java.awt.*;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class JEasyFrame extends JFrame {
     public Component comp;
@@ -12,13 +14,15 @@ public class JEasyFrame extends JFrame {
     public static final Rectangle SCREEN = device.getDefaultConfiguration().getBounds();
     public static final double SCREEN_RATIO = SCREEN.width/SCREEN.height;
 
-    public JEasyFrame(Component comp, String title) {
+    public JEasyFrame(JComponent comp, String title) {
         super(title);
         this.comp = comp;
-        getContentPane().add(BorderLayout.CENTER, comp);
-        pack();
-        this.setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        repaint();
+        GLG2DCanvas canvas = new GLG2DCanvas(comp);
+        this.setContentPane(canvas);
+        this.setResizable(false);
+        this.setVisible(true);
+        this.pack();
+
     }
 }
