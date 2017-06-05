@@ -4,7 +4,7 @@ import bouncingBallDemo.views.Ball;
 import fizz2d.model.integrators.ImprovedEulers;
 import fizz2d.world.World;
 import utilities.JEasyFrame;
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import java.awt.*;
 
@@ -24,9 +24,9 @@ public final class BouncingBallsDemo {
     }
 
     private BouncingBallsDemo() {
-        Vector2D worldSize = new Vector2D(80,60);
+        Vector2 worldSize = new Vector2(80,60);
         world = new World(worldSize);
-        Vector2D viewScale = new Vector2D(800/worldSize.x,
+        Vector2 viewScale = new Vector2(800/worldSize.x,
                             600/worldSize.y);
         view = new BouncingBallView(800, 600,
                 viewScale);
@@ -46,7 +46,7 @@ public final class BouncingBallsDemo {
         }
     }
 
-    private void setupGame(Vector2D scale) {
+    private void setupGame(Vector2 scale) {
         Ball ball = new Ball(scale.x, scale.y, Color.CYAN);
         Ball ball2 = new Ball(scale.x, scale.y, Color.RED);
         ball2.setIntegrator(new ImprovedEulers());

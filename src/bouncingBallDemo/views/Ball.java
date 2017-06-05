@@ -1,9 +1,8 @@
 package bouncingBallDemo.views;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import fizz2d.model.Particle;
 import fizz2d.model.integrators.IUpdateIntegrator;
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import java.awt.*;
 
@@ -18,8 +17,8 @@ public class Ball implements IGameObjectView {
     public Ball(double xScale, double yScale, Color color) {
         particle = new Particle(2, 1);
         particle.getPosition().set(30, 30);
-        particle.getVelocity().set(new Vector2D(5,0));
-        particle.addRepeatableForce(new Vector2D(0, -10));
+        particle.getVelocity().set(new Vector2(5,0));
+        particle.addRepeatableForce(new Vector2(0, -10));
         this.xScale = xScale;
         this.yScale = yScale;
         this.color = color;

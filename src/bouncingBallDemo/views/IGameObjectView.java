@@ -1,7 +1,6 @@
 package bouncingBallDemo.views;
 
 import fizz2d.model.Particle;
-import utilities.Vector2D;
 
 import java.awt.*;
 

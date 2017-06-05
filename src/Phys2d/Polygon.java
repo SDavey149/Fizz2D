@@ -1,6 +1,6 @@
 package Phys2d;
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import java.util.ArrayList;
 
@@ -16,12 +16,12 @@ public class Polygon extends Shape {
         lines = new ArrayList<>();
     }
 
-    public void moveTo(Vector2D start, Vector2D end) {
+    public void moveTo(Vector2 start, Vector2 end) {
         Line line = Line.getLineObject(start, end);
         lines.add(line);
     }
 
-    public void moveTo(Vector2D destination) {
+    public void moveTo(Vector2 destination) {
         Line lastLine = lines.get(lines.size()-1);
         Line line = Line.getLineObject(lastLine.endOfLine(), destination);
         lines.add(line);

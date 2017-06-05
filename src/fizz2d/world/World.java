@@ -1,7 +1,7 @@
 package fizz2d.world;
 
 import fizz2d.model.Particle;
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ import java.util.List;
 public class World {
     private WorldConfiguration worldConfiguration;
     private static int NUM_EULER = 5;
-    private Vector2D worldSize;
+    private Vector2 worldSize;
 
     private List<Particle> particles;
 
-    public World(Vector2D worldSize) {
+    public World(Vector2 worldSize) {
         particles = new ArrayList<>(50);
         this.worldSize = worldSize;
     }

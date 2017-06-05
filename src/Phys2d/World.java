@@ -1,6 +1,6 @@
 package Phys2d;
 
-import utilities.Vector2D;
+import utilities.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,17 +50,17 @@ public class World {
         gameObjects.add(obj);
     }
 
-    public Vector2D getGravitationalForce(GameObject obj, Vector2D pos, double mass) {
-        Vector2D force = new Vector2D(0,0);
+    public Vector2 getGravitationalForce(GameObject obj, Vector2 pos, double mass) {
+        Vector2 force = new Vector2(0,0);
         if (obj.hasRigidBody()) {
             for (GameObject o : gameObjects) {
                 if (o.mass > MIN_GRAVITATIONAL_MASS && o != obj) {
                     //make a copy
-                    Vector2D position = new Vector2D(pos);
+                    Vector2 position = new Vector2(pos);
                     position.mult(-1);
-                    Vector2D objToOther = new Vector2D(o.getPosition());
+                    Vector2 objToOther = new Vector2(o.getPosition());
                     objToOther.add(position);
-                    Vector2D direction = new Vector2D(objToOther);
+                    Vector2 direction = new Vector2(objToOther);
                     direction.normalise();
                     //gravitational (G*m1*m2)/d^2; m = mass, d = distance
                     if (objToOther.mag() > 0) {
