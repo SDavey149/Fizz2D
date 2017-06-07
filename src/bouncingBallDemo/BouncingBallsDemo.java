@@ -1,6 +1,7 @@
 package bouncingBallDemo;
 
-import bouncingBallDemo.views.Ball;
+import bouncingBallDemo.views.AbstractGameView;
+import bouncingBallDemo.views.game.Ball;
 import fizz2d.model.integrators.ImprovedEulers;
 import fizz2d.world.World;
 import utilities.JEasyFrame;
@@ -13,7 +14,7 @@ import java.awt.*;
  */
 public final class BouncingBallsDemo {
     public World world;
-    public BouncingBallView view;
+    public AbstractGameView view;
     private static final long TIME_BETWEEN_FRAME = 1000/60;
 
     public static void main(String[] args) {
@@ -51,9 +52,9 @@ public final class BouncingBallsDemo {
         Ball ball2 = new Ball(scale.x, scale.y, Color.RED);
         ball2.setIntegrator(new ImprovedEulers());
 
-        world.addGameObject(ball.getParticle());
-        world.addGameObject(ball2.getParticle());
-        view.AddGameObject(ball);
-        view.AddGameObject(ball2);
+        world.addGameObjects(ball.getParticles());
+        world.addGameObjects(ball2.getParticles());
+        view.registerGameComponent(ball);
+        view.registerGameComponent(ball2);
     }
 }

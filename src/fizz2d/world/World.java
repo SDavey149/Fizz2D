@@ -25,6 +25,16 @@ public class World {
         particles.add(particle);
     }
 
+    public void addGameObjects(List<Particle> particles) {
+        this.particles.addAll(particles);
+    }
+
+    public void addGameObjects(Particle[] particles) {
+        for (int i = 0; i < particles.length; i++) {
+            addGameObject(particles[i]);
+        }
+    }
+
     public void update(double delta) {
         delta = delta/NUM_EULER;
         for (int i = 0; i < NUM_EULER; i++) {
