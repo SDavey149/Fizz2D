@@ -1,7 +1,7 @@
 package fizz2d.model;
 
-import fizz2d.model.integrators.Eulers;
-import fizz2d.model.integrators.IUpdateIntegrator;
+import fizz2d.world.integrators.Eulers;
+import fizz2d.world.integrators.IUpdateIntegrator;
 import utilities.Vector2;
 
 /**

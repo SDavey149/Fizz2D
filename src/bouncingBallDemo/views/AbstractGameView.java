@@ -29,6 +29,7 @@ public abstract class AbstractGameView extends JComponent {
         Graphics2D g2 = (Graphics2D)g;
         enableGraphicsSettings(g2);
         paintGameComponents(g2);
+        Toolkit.getDefaultToolkit().sync();
     }
 
     private void enableGraphicsSettings(Graphics2D g) {

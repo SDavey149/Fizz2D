@@ -2,7 +2,7 @@ package bouncingBallDemo.views.game;
 
 import bouncingBallDemo.views.IGameComponent;
 import fizz2d.model.Particle;
-import fizz2d.model.integrators.IUpdateIntegrator;
+import fizz2d.world.integrators.IUpdateIntegrator;
 import utilities.Vector2;
 
 import java.awt.*;

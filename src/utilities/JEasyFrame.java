@@ -23,6 +23,5 @@ public class JEasyFrame extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         this.pack();
-
     }
 }
