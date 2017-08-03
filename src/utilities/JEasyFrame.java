@@ -1,9 +1,6 @@
 package utilities;
 
-import org.jogamp.glg2d.GLG2DCanvas;
-
 import java.awt.*;
-
 import javax.swing.*;
 
 public class JEasyFrame extends JFrame {
@@ -18,8 +15,7 @@ public class JEasyFrame extends JFrame {
         super(title);
         this.comp = comp;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        GLG2DCanvas canvas = new GLG2DCanvas(comp);
-        this.setContentPane(canvas);
+        this.setContentPane(comp);
         this.setResizable(false);
         this.setVisible(true);
         this.pack();

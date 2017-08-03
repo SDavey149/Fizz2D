@@ -20,7 +20,6 @@ public final class BouncingBallsDemo {
     private static final long TIME_BETWEEN_FRAME = 1000/60;
 
     public static void main(String[] args) {
-        System.setProperty("sun.java2d.opengl", "True");
         BouncingBallsDemo demo = new BouncingBallsDemo();
         JEasyFrame frame = new JEasyFrame(demo.view, "Bouncing Ball Demo");
         frame.setSize(800, 625);
@@ -38,29 +37,9 @@ public final class BouncingBallsDemo {
     }
 
     public void gameLoop() {
-        //TODO: this needs fixing so it's not on the main thread
-        /*while (true) {
-            world.update(0.016);
-            view.repaint();
-            try {
-               Thread.sleep(TIME_BETWEEN_FRAME);
-            } catch (InterruptedException e) {
-                //no operation
-            }
-
-        }*/
-
-        Timer t = new Timer(16, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                world.update(0.016);
-                view.repaint();
-            }
-        });
-        t.start();
+        Thread gameThread = new Thread(new GameLoopRunnable(world, view));
+        gameThread.start();
     }
-
-
 
     private void setupGame(Vector2 scale) {
         Ball ball = new Ball(scale.x, scale.y, Color.CYAN);

@@ -7,17 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/glg2d-0.3-20130517.133836-3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="org.jogamp.jogl:newt:2.1.3" level="project" />
-    <orderEntry type="library" name="org.jogamp.jogl:jogl-all-main:2.1.3" level="project" />
-    <orderEntry type="library" name="org.jogamp.gluegen:gluegen-rt-main:2.1.3" level="project" />
   </component>
 </module>
