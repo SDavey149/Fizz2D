@@ -17,12 +17,13 @@ public class Ball implements IGameComponent, IGameObject {
 
     public Ball(double xScale, double yScale, Color color) {
         particle = new Particle(2, 1);
-        particle.getPosition().set(30, 30);
-        particle.getVelocity().set(new Vector2(5, 0));
-        particle.addRepeatableForce(new Vector2(0, -10));
         this.xScale = xScale;
         this.yScale = yScale;
         this.color = color;
+    }
+
+    public Particle getParticle() {
+        return particle;
     }
 
     @Override

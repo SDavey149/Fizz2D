@@ -43,7 +43,14 @@ public final class BouncingBallsDemo {
 
     private void setupGame(Vector2 scale) {
         Ball ball = new Ball(scale.x, scale.y, Color.CYAN);
+        ball.getParticle().getPosition().set(30, 30);
+        ball.getParticle().getVelocity().set(5, 0);
+        ball.getParticle().addRepeatableForce(new Vector2(0, -10));
+
         Ball ball2 = new Ball(scale.x, scale.y, Color.RED);
+        ball2.getParticle().getPosition().set(70, 30);
+        ball2.getParticle().getVelocity().set(5, 0);
+        ball2.getParticle().addRepeatableForce(new Vector2(0, -10));
         ball2.setIntegrator(new ImprovedEulers());
 
         world.addGameObjects(ball.getParticles());
@@ -51,4 +58,5 @@ public final class BouncingBallsDemo {
         view.registerGameComponent(ball);
         view.registerGameComponent(ball2);
     }
+
 }

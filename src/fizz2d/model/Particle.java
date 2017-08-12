@@ -80,35 +80,4 @@ public class Particle {
         forceAccumulator.add(force);
     }
 
-    /*public boolean collidesWith(BasicParticle p2) {
-        Vector2 vecFrom1to2 = Vector2.minus(p2.getPos(), getPos());
-        boolean movingTowardsEachOther = Vector2.minus(p2.getVel(), getVel()).scalarProduct(vecFrom1to2)<0;
-        return vecFrom1to2.mag()<getRadius()+p2.getRadius() && movingTowardsEachOther;
-    }
-
-    public static void implementElasticCollision(BasicParticle p1, BasicParticle p2, double e) {
-        if (!p1.collidesWith(p2)) throw new IllegalArgumentException();
-        Vector2 a = new Vector2(p1.getPos());
-        a.mult(-1);
-        Vector2 normal = new Vector2(p2.getPos());
-        normal.add(a);
-        normal.normalise();
-
-        double Jb = (e+1)*(p1.getVel().scalarProduct(normal) - p2.getVel().scalarProduct(normal));
-        Jb/= (1/p1.getMass() + 1/p2.getMass());
-
-        Vector2 Vb = p2.getVel();
-        Vector2 normal2 = new Vector2(normal);
-        normal2.mult(Jb / p2.getMass());
-        Vb.add(normal2);
-        p2.setVel(Vb);
-
-        Vector2 Va = p1.getVel();
-        Vector2 normal3 = new Vector2(normal);
-        normal3.mult(Jb/p1.getMass());
-        normal3.mult(-1);
-        Va.add(normal3);
-        p1.setVel(Va);
-    }*/
-
 }

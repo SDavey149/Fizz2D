@@ -1,5 +1,6 @@
 package fizz2d.world;
 
+import fizz2d.collision.*;
 import fizz2d.model.Particle;
 import utilities.Vector2;
 
@@ -13,12 +14,17 @@ public class World {
     private WorldConfiguration worldConfiguration;
     private static int NUM_EULER = 5;
     private Vector2 worldSize;
+    private IParticleContactDetector particleContactDetector;
+    private IParticleContactResolver particleContactResolver;
 
     private List<Particle> particles;
 
     public World(Vector2 worldSize) {
         particles = new ArrayList<>(50);
         this.worldSize = worldSize;
+        //TODO: no singleton, factory would be better or dependency injection
+        particleContactDetector = ParticleContactDetector.getInstance();
+        particleContactResolver = new ElasticParticleContactResolver();
     }
 
     public void addGameObject(Particle particle) {
@@ -47,6 +53,8 @@ public class World {
             particle.update(delta);
             worldBoundaryCheck(particle);
         }
+        List<ParticleContact> particleCollisions = particleContactDetector.getParticleContacts(particles);
+        particleContactResolver.resolveParticleContacts(particleCollisions);
     }
 
     private void worldBoundaryCheck(Particle particle) {
