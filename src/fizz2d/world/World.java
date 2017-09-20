@@ -22,7 +22,7 @@ public class World {
     public World(Vector2 worldSize) {
         particles = new ArrayList<>(50);
         this.worldSize = worldSize;
-        //TODO: no singleton, factory would be better or dependency injection
+        //TODO: set in world configuration
         particleContactDetector = ParticleContactDetector.getInstance();
         particleContactResolver = new ElasticParticleContactResolver();
     }
@@ -53,10 +53,12 @@ public class World {
             particle.update(delta);
             worldBoundaryCheck(particle);
         }
-        List<ParticleContact> particleCollisions = particleContactDetector.getParticleContacts(particles);
+        List<ParticleContact> particleCollisions = particleContactDetector.getParticleToParticleContacts(particles);
+        List<ParticleContact> particleBarrierCollisions = particleContactDetector.getParticleToBarrierContacts(particles, null);
         particleContactResolver.resolveParticleContacts(particleCollisions);
     }
 
+    //TODO: should be moved to particle contact detector
     private void worldBoundaryCheck(Particle particle) {
         if (particle.getPosition().x + particle.getRadius() > worldSize.x
                 || particle.getPosition().x - particle.getRadius() < 0) {

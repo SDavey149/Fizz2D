@@ -1,5 +1,6 @@
 package fizz2d.collision;
 
+import fizz2d.model.Barrier;
 import fizz2d.model.Particle;
 import utilities.Vector2;
 
@@ -24,16 +25,33 @@ public class ParticleContactDetector implements IParticleContactDetector {
         //singleton
     }
 
-    public List<ParticleContact> getParticleContacts(List<Particle> particles) {
+    @Override
+    public List<ParticleContact> getParticleToParticleContacts(List<Particle> particles) {
         List<ParticleContact> particleContacts = new ArrayList<>();
         for (int i = 0; i < particles.size(); i++) {
+            Particle p1 = particles.get(i);
             for (int j = 0; j < i; j++) {
-                Particle p1 = particles.get(i);
                 Particle p2 = particles.get(j);
                 if (!hasCollided(p1, p2)) {
                     continue;
                 }
                 particleContacts.add(createParticleContact(p1, p2));
+            }
+        }
+        return particleContacts;
+    }
+
+    @Override
+    public List<ParticleContact> getParticleToBarrierContacts(List<Particle> particles, List<Barrier> barriers) {
+        List<ParticleContact> particleContacts = new ArrayList<>();
+        for (int i = 0; i < barriers.size(); i++) {
+            Barrier barrier = barriers.get(i);
+            for (int j = 0; j < particles.size(); j++) {
+                Particle particle = particles.get(j);
+                if (!hasCollided(particle, barrier)) {
+                    continue;
+                }
+                particleContacts.add(createParticleContact(particle, barrier));
             }
         }
         return particleContacts;
@@ -47,6 +65,10 @@ public class ParticleContactDetector implements IParticleContactDetector {
         return particleContact;
     }
 
+    private ParticleContact createParticleContact(Particle particle, Barrier barrier) {
+        return null;
+    }
+
     private static boolean hasCollided(Particle a, Particle b) {
         Vector2 particleAToB = Vector2.minus(a.getPosition(), b.getPosition());
         double seperationVelocity = particleAToB.scalarProduct(Vector2.minus(a.getVelocity(), b.getVelocity()));
@@ -56,5 +78,9 @@ public class ParticleContactDetector implements IParticleContactDetector {
 
         double combinedRadius = a.getRadius() + b.getRadius();
         return particleAToB.mag() < combinedRadius;
+    }
+
+    private static boolean hasCollided(Particle particle, Barrier barrier) {
+        return false;
     }
 }
