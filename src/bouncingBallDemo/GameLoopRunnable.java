@@ -32,15 +32,23 @@ public class GameLoopRunnable implements Runnable {
             lastTime = currentTime;
             world.update(deltaMilliseconds/1000.0);
             view.repaint();
-            try {
-                long delay = DELAY;
-                long frameDifference = deltaMilliseconds-DELAY;
-                if (frameDifference > 0) {
-                    delay -= frameDifference;
-                }
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {
+            long delay = DELAY;
+            long frameDifference = deltaMilliseconds-DELAY;
+            if (frameDifference > 0) {
+                delay -= frameDifference;
             }
+            threadSleep(delay);
+        }
+    }
+
+    private void threadSleep(long delay) {
+        if (delay < 0) {
+            return;
+        }
+        try {
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

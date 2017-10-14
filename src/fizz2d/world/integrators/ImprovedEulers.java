@@ -1,6 +1,6 @@
 package fizz2d.world.integrators;
 
-import fizz2d.model.Particle;
+import fizz2d.particle.Particle;
 import utilities.Vector2;
 
 /**
@@ -45,8 +45,5 @@ public class ImprovedEulers implements IUpdateIntegrator {
 
         p.getPosition().addScaled(velocityCopy, delta);
         p.getVelocity().addScaled(acceleration, delta);
-
-        p.getForceAccumulated().set(0);
-
     }
 }

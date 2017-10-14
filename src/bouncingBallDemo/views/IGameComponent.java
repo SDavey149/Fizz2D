@@ -1,7 +1,5 @@
 package bouncingBallDemo.views;
 
-import fizz2d.model.Particle;
-
 import java.awt.*;
 
 /**

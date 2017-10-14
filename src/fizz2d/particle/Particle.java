@@ -1,4 +1,4 @@
-package fizz2d.model;
+package fizz2d.particle;
 
 import fizz2d.world.integrators.Eulers;
 import fizz2d.world.integrators.IUpdateIntegrator;
@@ -33,7 +33,6 @@ public class Particle {
         integrator = new Eulers();
     }
 
-    //region GETTERS & SETTERS
     public Vector2 getPosition() {
         return position;
     }
@@ -65,15 +64,11 @@ public class Particle {
     public void setIntegrator(IUpdateIntegrator integrator) {
         this.integrator = integrator;
     }
-    //endregion
 
     public void update(double delta) {
         forceAccumulator.add(repeatableForce);
         integrator.update(delta, this);
-    }
-
-    public void addRepeatableForce(Vector2 force) {
-        repeatableForce.add(force);
+        forceAccumulator.set(0,0);
     }
 
     public void addForce(Vector2 force) {

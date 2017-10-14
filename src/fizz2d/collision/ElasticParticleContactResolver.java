@@ -1,6 +1,6 @@
 package fizz2d.collision;
 
-import fizz2d.model.Particle;
+import fizz2d.particle.Particle;
 import utilities.Vector2;
 
 import java.util.List;

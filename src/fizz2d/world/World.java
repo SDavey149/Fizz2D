@@ -1,7 +1,9 @@
 package fizz2d.world;
 
 import fizz2d.collision.*;
-import fizz2d.model.Particle;
+import fizz2d.particle.IParticleForceGenerator;
+import fizz2d.particle.Particle;
+import fizz2d.particle.ParticleForceRegistry;
 import utilities.Vector2;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class World {
     private Vector2 worldSize;
     private IParticleContactDetector particleContactDetector;
     private IParticleContactResolver particleContactResolver;
+    private ParticleForceRegistry particleForceRegistry;
 
     private List<Particle> particles;
 
@@ -25,6 +28,7 @@ public class World {
         //TODO: set in world configuration
         particleContactDetector = ParticleContactDetector.getInstance();
         particleContactResolver = new ElasticParticleContactResolver();
+        particleForceRegistry = new ParticleForceRegistry();
     }
 
     public void addGameObject(Particle particle) {
@@ -33,6 +37,10 @@ public class World {
 
     public void addGameObjects(List<Particle> particles) {
         this.particles.addAll(particles);
+    }
+
+    public void registerParticleForceGenerator(Particle particle, IParticleForceGenerator generator) {
+        particleForceRegistry.registerParticle(particle, generator);
     }
 
     public void addGameObjects(Particle[] particles) {
@@ -49,12 +57,12 @@ public class World {
     }
 
     private void updateGameObjects(double delta) {
+        particleForceRegistry.updateRegisteredForces();
         for (Particle particle : particles) {
             particle.update(delta);
             worldBoundaryCheck(particle);
         }
         List<ParticleContact> particleCollisions = particleContactDetector.getParticleToParticleContacts(particles);
-        List<ParticleContact> particleBarrierCollisions = particleContactDetector.getParticleToBarrierContacts(particles, null);
         particleContactResolver.resolveParticleContacts(particleCollisions);
     }
 

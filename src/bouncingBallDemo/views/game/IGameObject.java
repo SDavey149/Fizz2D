@@ -1,8 +1,6 @@
 package bouncingBallDemo.views.game;
 
-import fizz2d.model.Particle;
-
-import java.util.List;
+import fizz2d.particle.Particle;
 
 /**
  * Created by scottdavey on 07/06/2017.
