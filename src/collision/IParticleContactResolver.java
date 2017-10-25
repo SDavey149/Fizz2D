@@ -1,4 +1,4 @@
-package fizz2d.collision;
+package collision;
 
 import java.util.List;
 

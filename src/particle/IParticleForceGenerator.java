@@ -1,6 +1,6 @@
-package fizz2d.particle;
+package particle;
 
-import utilities.Vector2;
+import model.Vector2;
 
 /**
  * Created by Scott Davey on 14/10/2017.

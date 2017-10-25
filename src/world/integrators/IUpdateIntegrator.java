@@ -1,6 +1,6 @@
-package fizz2d.world.integrators;
+package world.integrators;
 
-import fizz2d.particle.Particle;
+import particle.Particle;
 
 /**
  * Created by scottdavey on 16/04/2017.

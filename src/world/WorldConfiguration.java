@@ -1,4 +1,4 @@
-package fizz2d.world;
+package world;
 
 /**
  * Created by Scott Davey on 03/04/2017.

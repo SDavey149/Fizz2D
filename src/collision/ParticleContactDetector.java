@@ -1,8 +1,7 @@
-package fizz2d.collision;
+package collision;
 
-import fizz2d.particle.Particle;
-import utilities.Vector2;
-
+import particle.Particle;
+import model.Vector2;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package fizz2d.world.integrators;
+package world.integrators;
 
-import fizz2d.particle.Particle;
-import utilities.Vector2;
+import model.Vector2;
+import particle.Particle;
 
 /**
  * Created by scottdavey on 16/04/2017.

@@ -1,8 +1,8 @@
-package fizz2d.particle;
+package particle;
 
-import fizz2d.world.integrators.Eulers;
-import fizz2d.world.integrators.IUpdateIntegrator;
-import utilities.Vector2;
+import world.integrators.Eulers;
+import world.integrators.IUpdateIntegrator;
+import model.Vector2;
 
 /**
  * Created by scottdavey on 16/04/2017.

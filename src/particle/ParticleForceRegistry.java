@@ -1,6 +1,6 @@
-package fizz2d.particle;
+package particle;
 
-import fizz2d.collision.IParticleContactResolver;
+import collision.IParticleContactResolver;
 
 import java.util.*;
 

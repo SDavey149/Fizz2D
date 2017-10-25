@@ -1,7 +1,6 @@
-package fizz2d.collision;
+package collision;
 
-import fizz2d.particle.Particle;
-
+import particle.Particle;
 import java.util.List;
 
 /**

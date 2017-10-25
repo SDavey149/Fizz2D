@@ -1,7 +1,7 @@
-package fizz2d.collision;
+package collision;
 
-import fizz2d.particle.Particle;
-import utilities.Vector2;
+import particle.Particle;
+import model.Vector2;
 
 /**
  * Created by Scott Davey on 22/05/2017.

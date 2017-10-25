@@ -1,10 +1,10 @@
-package fizz2d.world;
+package world;
 
-import fizz2d.collision.*;
-import fizz2d.particle.IParticleForceGenerator;
-import fizz2d.particle.Particle;
-import fizz2d.particle.ParticleForceRegistry;
-import utilities.Vector2;
+import collision.*;
+import particle.IParticleForceGenerator;
+import particle.Particle;
+import particle.ParticleForceRegistry;
+import model.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
