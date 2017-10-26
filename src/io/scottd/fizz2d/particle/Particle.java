@@ -1,8 +1,8 @@
-package particle;
+package io.scottd.fizz2d.particle;
 
-import world.integrators.Eulers;
-import world.integrators.IUpdateIntegrator;
-import model.Vector2;
+import io.scottd.fizz2d.world.integrators.Eulers;
+import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
+import io.scottd.fizz2d.model.Vector2;
 
 /**
  * Created by scottdavey on 16/04/2017.

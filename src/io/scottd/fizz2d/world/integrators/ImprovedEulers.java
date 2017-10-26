@@ -1,7 +1,7 @@
-package world.integrators;
+package io.scottd.fizz2d.world.integrators;
 
-import model.Vector2;
-import particle.Particle;
+import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.particle.Particle;
 
 /**
  * Created by scottdavey on 16/04/2017.

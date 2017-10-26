@@ -1,6 +1,4 @@
-package particle;
-
-import collision.IParticleContactResolver;
+package io.scottd.fizz2d.particle;
 
 import java.util.*;
 

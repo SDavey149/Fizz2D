@@ -1,10 +1,10 @@
-package world;
+package io.scottd.fizz2d.world;
 
-import collision.*;
-import particle.IParticleForceGenerator;
-import particle.Particle;
-import particle.ParticleForceRegistry;
-import model.Vector2;
+import io.scottd.fizz2d.collision.*;
+import io.scottd.fizz2d.particle.IParticleForceGenerator;
+import io.scottd.fizz2d.particle.Particle;
+import io.scottd.fizz2d.particle.ParticleForceRegistry;
+import io.scottd.fizz2d.model.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class World {
     public World(Vector2 worldSize) {
         particles = new ArrayList<>(50);
         this.worldSize = worldSize;
-        //TODO: set in world configuration
+        //TODO: set in io.scottd.fizz2d.world configuration
         particleContactDetector = ParticleContactDetector.getInstance();
         particleContactResolver = new ElasticParticleContactResolver();
         particleForceRegistry = new ParticleForceRegistry();
@@ -66,7 +66,7 @@ public class World {
         particleContactResolver.resolveParticleContacts(particleCollisions);
     }
 
-    //TODO: should be moved to particle contact detector
+    //TODO: should be moved to io.scottd.fizz2d.particle contact detector
     private void worldBoundaryCheck(Particle particle) {
         if (particle.getPosition().x + particle.getRadius() > worldSize.x
                 || particle.getPosition().x - particle.getRadius() < 0) {

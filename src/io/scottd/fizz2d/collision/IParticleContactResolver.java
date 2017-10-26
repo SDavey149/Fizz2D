@@ -1,4 +1,4 @@
-package collision;
+package io.scottd.fizz2d.collision;
 
 import java.util.List;
 

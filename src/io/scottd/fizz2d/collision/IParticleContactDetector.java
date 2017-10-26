@@ -1,6 +1,6 @@
-package collision;
+package io.scottd.fizz2d.collision;
 
-import particle.Particle;
+import io.scottd.fizz2d.particle.Particle;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package model;
+package io.scottd.fizz2d.model;
 
 public final class Vector2 {
     public double x, y;
