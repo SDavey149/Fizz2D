@@ -5,13 +5,19 @@ import io.scottd.fizz2d.model.Vector2;
 /**
  * Created by Scott Davey on 14/10/2017.
  */
-public class GravityParticleForceGenerator implements IParticleForceGenerator {
+public class ConstantParticleForceGenerator implements IParticleForceGenerator {
     // We don't need to instantiate lots of gravity generators by accident
     private static int hashCode = 1;
 
+    private Vector2 constantForce;
+
+    public ConstantParticleForceGenerator(Vector2 constantForce) {
+        this.constantForce = constantForce;
+    }
+
     @Override
     public Vector2 getForce(Particle particle) {
-        return new Vector2(0, -10);
+        return constantForce;
     }
 
     @Override
@@ -21,7 +27,7 @@ public class GravityParticleForceGenerator implements IParticleForceGenerator {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof GravityParticleForceGenerator) {
+        if (obj instanceof ConstantParticleForceGenerator) {
             return true;
         }
         return false;
