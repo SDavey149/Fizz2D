@@ -49,7 +49,7 @@ public final class Vector2 {
 
     // angle of difference vector between this vector and other vector
     public double angle(Vector2 other) {
-        return Math.atan2(other.y - y, other.x - x);
+        return Math.atan2(x*other.y - y*other.x, x*other.x + y*other.y);
     }
 
     public String toString() {
