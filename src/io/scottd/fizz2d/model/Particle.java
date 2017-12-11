@@ -1,4 +1,4 @@
-package io.scottd.fizz2d.particle;
+package io.scottd.fizz2d.model;
 
 import io.scottd.fizz2d.world.integrators.Eulers;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;

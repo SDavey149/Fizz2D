@@ -88,7 +88,7 @@ public final class Vector2 {
         return x * v.x + y * v.y;
     }
 
-    public double dist(Vector2 v) {
+    public double distance(Vector2 v) {
         return Math.hypot(x - v.x, y - v.y);
     }
 
@@ -104,20 +104,11 @@ public final class Vector2 {
 
     }
 
-    public double getAngle() {
-        return Math.atan2(y, x);
-    }
-
     public static Vector2 minus(Vector2 v1, Vector2 v2) {
         return new Vector2(v1.x - v2.x, v1.y - v2.y);
     }
 
     public Vector2 rotate90degreesAnticlockwise() {
         return new Vector2(-y,x);
-    }
-
-    public void elementWiseMult(Vector2 multiplier) {
-        this.x = this.x*multiplier.x;
-        this.y = this.y*multiplier.y;
     }
 }

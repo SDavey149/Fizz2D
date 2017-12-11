@@ -1,7 +1,4 @@
-package io.scottd.fizz2d.collision;
-
-import io.scottd.fizz2d.particle.Particle;
-import io.scottd.fizz2d.model.Vector2;
+package io.scottd.fizz2d.model;
 
 /**
  * Created by Scott Davey on 22/05/2017.
