@@ -72,6 +72,9 @@ public class Particle {
     }
 
     public void addForce(Vector2 force) {
+        if (force == null) {
+            return;
+        }
         forceAccumulator.add(force);
     }
 
