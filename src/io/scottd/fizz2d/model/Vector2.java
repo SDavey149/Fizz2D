@@ -101,7 +101,16 @@ public final class Vector2 {
     public void divide(double operand) {
         x = x/operand;
         y = y/operand;
+    }
 
+    public void divide(Vector2 v) {
+        this.x /= v.x;
+        this.y /= v.y;
+    }
+
+    public void elementWiseMultiply(Vector2 v) {
+        this.x *= v.x;
+        this.y *= v.y;
     }
 
     public static Vector2 minus(Vector2 v1, Vector2 v2) {

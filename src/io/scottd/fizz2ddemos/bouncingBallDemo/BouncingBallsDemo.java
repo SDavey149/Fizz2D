@@ -1,8 +1,12 @@
 package io.scottd.fizz2ddemos.bouncingBallDemo;
 
+import io.scottd.fizz2d.collision.ElasticParticleContactResolver;
+import io.scottd.fizz2d.collision.ParticleContactDetector;
 import io.scottd.fizz2d.force_generator.ConstantParticleForceGenerator;
+import io.scottd.fizz2d.force_generator.ParticleForceRegistry;
 import io.scottd.fizz2d.model.Vector2;
 import io.scottd.fizz2d.world.World;
+import io.scottd.fizz2d.world.WorldConfiguration;
 import io.scottd.fizz2d.world.integrators.Eulers;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
 import io.scottd.fizz2d.world.integrators.ImprovedEulers;
@@ -11,11 +15,13 @@ import io.scottd.fizz2ddemos.bouncingBallDemo.views.game.Ball;
 import io.scottd.fizz2ddemos.utils.JEasyFrame;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by scottdavey on 11/04/2017.
  */
-public final class BouncingBallsDemo {
+public final class BouncingBallsDemo implements MouseListener {
     public World world;
     public AbstractGameView view;
     private Vector2 viewScale;
@@ -31,13 +37,24 @@ public final class BouncingBallsDemo {
     }
 
     private BouncingBallsDemo() {
-        Vector2 worldSize = new Vector2(80,60);
-        world = new World(worldSize);
-        viewScale = new Vector2(RESOLUTION_X/worldSize.x,
-                            RESOLUTION_Y /worldSize.y);
+        WorldConfiguration config = CreateWorldConfiguration();
+        world = new World(config);
+        viewScale = new Vector2(RESOLUTION_X/config.worldSize.x,
+                            RESOLUTION_Y /config.worldSize.y);
         view = new BouncingBallView(RESOLUTION_X, RESOLUTION_Y,
                 viewScale);
+        view.addMouseListener(this);
         setupGame();
+    }
+
+    private WorldConfiguration CreateWorldConfiguration() {
+        WorldConfiguration config = new WorldConfiguration();
+        config.worldSize = new Vector2(80, 60);
+        config.particleForceRegistry = new ParticleForceRegistry();
+        config.eulerUpdates = 10;
+        config.particleContactDetector = ParticleContactDetector.getInstance();
+        config.particleContactResolver = new ElasticParticleContactResolver();
+        return config;
     }
 
     public void gameLoop() {
@@ -60,4 +77,30 @@ public final class BouncingBallsDemo {
         view.registerGameComponent(ball);
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Vector2 position = new Vector2(e.getX(), RESOLUTION_Y-e.getY());
+        position.divide(viewScale);
+        setupBall(position, new Vector2(0, 0), new ImprovedEulers(), Color.GREEN);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }

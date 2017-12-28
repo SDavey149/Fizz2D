@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by scottdavey on 07/06/2017.
  */
-public class BouncingBallView extends AbstractGameView {
+public class BouncingBallView extends AbstractGameView{
     private int resolutionX, resolutionY;
     Vector2 scale;
 
