@@ -1,10 +1,8 @@
 package io.scottd.fizz2d.world;
 
-import io.scottd.fizz2d.collision.*;
-import io.scottd.fizz2d.particle.IParticleForceGenerator;
-import io.scottd.fizz2d.particle.Particle;
-import io.scottd.fizz2d.particle.ParticleForceRegistry;
-import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.force_generator.IParticleForceGenerator;
+import io.scottd.fizz2d.model.Particle;
+import io.scottd.fizz2d.model.ParticleContact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,33 +12,26 @@ import java.util.List;
  */
 public class World {
     private WorldConfiguration worldConfiguration;
-    private static int NUM_EULER = 5;
-    private Vector2 worldSize;
-    private IParticleContactDetector particleContactDetector;
-    private IParticleContactResolver particleContactResolver;
-    private ParticleForceRegistry particleForceRegistry;
 
     private List<Particle> particles;
+    private List<Particle> pending;
 
-    public World(Vector2 worldSize) {
+    public World(WorldConfiguration worldConfiguration) {
+        this.worldConfiguration = worldConfiguration;
         particles = new ArrayList<>(50);
-        this.worldSize = worldSize;
-        //TODO: set in io.scottd.fizz2d.world configuration
-        particleContactDetector = ParticleContactDetector.getInstance();
-        particleContactResolver = new ElasticParticleContactResolver();
-        particleForceRegistry = new ParticleForceRegistry();
+        pending = new ArrayList<>(10);
     }
 
     public void addGameObject(Particle particle) {
-        particles.add(particle);
+        pending.add(particle);
     }
 
     public void addGameObjects(List<Particle> particles) {
-        this.particles.addAll(particles);
+        pending.addAll(particles);
     }
 
     public void registerParticleForceGenerator(Particle particle, IParticleForceGenerator generator) {
-        particleForceRegistry.registerParticle(particle, generator);
+        worldConfiguration.particleForceRegistry.registerParticle(particle, generator);
     }
 
     public void addGameObjects(Particle[] particles) {
@@ -50,29 +41,37 @@ public class World {
     }
 
     public void update(double delta) {
-        delta = delta/NUM_EULER;
-        for (int i = 0; i < NUM_EULER; i++) {
+        delta = delta/worldConfiguration.eulerUpdates;
+        for (int i = 0; i < worldConfiguration.eulerUpdates; i++) {
             updateGameObjects(delta);
         }
+
+        addPendingObjects();
+    }
+
+    private void addPendingObjects() {
+        particles.addAll(pending);
+        pending.clear();
     }
 
     private void updateGameObjects(double delta) {
-        particleForceRegistry.updateRegisteredForces();
+        worldConfiguration.particleForceRegistry.updateRegisteredForces();
         for (Particle particle : particles) {
             particle.update(delta);
             worldBoundaryCheck(particle);
         }
-        List<ParticleContact> particleCollisions = particleContactDetector.getParticleToParticleContacts(particles);
-        particleContactResolver.resolveParticleContacts(particleCollisions);
+        List<ParticleContact> particleCollisions = worldConfiguration.particleContactDetector.getParticleToParticleContacts(particles);
+        worldConfiguration.particleContactResolver.resolveParticleContacts(particleCollisions);
     }
 
-    //TODO: should be moved to io.scottd.fizz2d.particle contact detector
+    //TODO: should be moved to io.scottd.fizz2d.force_generator contact detector
+    //BUG: Balls can fall through the corners
     private void worldBoundaryCheck(Particle particle) {
-        if (particle.getPosition().x + particle.getRadius() > worldSize.x
+        if (particle.getPosition().x + particle.getRadius() > worldConfiguration.worldSize.x
                 || particle.getPosition().x - particle.getRadius() < 0) {
             particle.getVelocity().x*=-1;
         }
-        else if (particle.getPosition().y + particle.getRadius() > worldSize.y
+        else if (particle.getPosition().y + particle.getRadius() > worldConfiguration.worldSize.y
                 || particle.getPosition().y - particle.getRadius() < 0) {
             particle.getVelocity().y*=-1;
         }

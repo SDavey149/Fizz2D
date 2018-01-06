@@ -1,4 +1,4 @@
-package io.scottd.fizz2d.particle;
+package io.scottd.fizz2d.model;
 
 import io.scottd.fizz2d.world.integrators.Eulers;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
@@ -72,6 +72,9 @@ public class Particle {
     }
 
     public void addForce(Vector2 force) {
+        if (force == null) {
+            return;
+        }
         forceAccumulator.add(force);
     }
 

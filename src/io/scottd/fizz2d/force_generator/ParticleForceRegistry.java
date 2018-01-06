@@ -1,4 +1,6 @@
-package io.scottd.fizz2d.particle;
+package io.scottd.fizz2d.force_generator;
+
+import io.scottd.fizz2d.model.Particle;
 
 import java.util.*;
 

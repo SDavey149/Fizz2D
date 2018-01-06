@@ -49,7 +49,7 @@ public final class Vector2 {
 
     // angle of difference vector between this vector and other vector
     public double angle(Vector2 other) {
-        return Math.atan2(other.y - y, other.x - x);
+        return Math.atan2(x*other.y - y*other.x, x*other.x + y*other.y);
     }
 
     public String toString() {
@@ -88,7 +88,7 @@ public final class Vector2 {
         return x * v.x + y * v.y;
     }
 
-    public double dist(Vector2 v) {
+    public double distance(Vector2 v) {
         return Math.hypot(x - v.x, y - v.y);
     }
 
@@ -101,11 +101,16 @@ public final class Vector2 {
     public void divide(double operand) {
         x = x/operand;
         y = y/operand;
-
     }
 
-    public double getAngle() {
-        return Math.atan2(y, x);
+    public void divide(Vector2 v) {
+        this.x /= v.x;
+        this.y /= v.y;
+    }
+
+    public void elementWiseMultiply(Vector2 v) {
+        this.x *= v.x;
+        this.y *= v.y;
     }
 
     public static Vector2 minus(Vector2 v1, Vector2 v2) {
@@ -114,10 +119,5 @@ public final class Vector2 {
 
     public Vector2 rotate90degreesAnticlockwise() {
         return new Vector2(-y,x);
-    }
-
-    public void elementWiseMult(Vector2 multiplier) {
-        this.x = this.x*multiplier.x;
-        this.y = this.y*multiplier.y;
     }
 }
