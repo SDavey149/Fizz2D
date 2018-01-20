@@ -1,8 +1,9 @@
-package io.scottd.fizz2ddemos.bouncingBallDemo.views.game;
+package io.scottd.fizz2ddemos.bouncingBallDemo.views;
 
 import io.scottd.fizz2d.model.Particle;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.IGameComponent;
+import io.scottd.fizz2ddemos.IGameComponent;
+import io.scottd.fizz2ddemos.IGameObject;
 
 import java.awt.*;
 

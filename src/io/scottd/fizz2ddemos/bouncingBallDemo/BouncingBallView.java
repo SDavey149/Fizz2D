@@ -1,8 +1,8 @@
 package io.scottd.fizz2ddemos.bouncingBallDemo;
 
-import io.scottd.fizz2d.model.Vector2;
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.AbstractGameView;
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.ui.BackgroundComponent;
+import io.scottd.fizz2d.Vector2;
+import io.scottd.fizz2ddemos.AbstractGameView;
+import io.scottd.fizz2ddemos.bouncingBallDemo.views.BackgroundComponent;
 
 import java.awt.*;
 

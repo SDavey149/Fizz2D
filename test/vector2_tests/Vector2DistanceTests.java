@@ -1,6 +1,6 @@
 package vector2_tests;
 
-import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.Vector2;
 import org.junit.Assert;
 import org.junit.Test;
 

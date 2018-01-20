@@ -2,7 +2,7 @@ package io.scottd.fizz2d.collision;
 
 import io.scottd.fizz2d.model.ParticleContact;
 import io.scottd.fizz2d.model.Particle;
-import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.Vector2;
 import java.util.List;
 
 /**

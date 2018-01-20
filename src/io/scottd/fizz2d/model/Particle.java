@@ -2,7 +2,7 @@ package io.scottd.fizz2d.model;
 
 import io.scottd.fizz2d.world.integrators.Eulers;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
-import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.Vector2;
 
 /**
  * Created by scottdavey on 16/04/2017.

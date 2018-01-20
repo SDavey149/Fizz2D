@@ -1,6 +1,6 @@
-package io.scottd.fizz2ddemos.bouncingBallDemo.views.ui;
+package io.scottd.fizz2ddemos.bouncingBallDemo.views;
 
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.IGameComponent;
+import io.scottd.fizz2ddemos.IGameComponent;
 
 import java.awt.*;
 

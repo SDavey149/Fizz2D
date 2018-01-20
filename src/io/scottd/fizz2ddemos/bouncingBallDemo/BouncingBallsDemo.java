@@ -4,15 +4,18 @@ import io.scottd.fizz2d.collision.ElasticParticleContactResolver;
 import io.scottd.fizz2d.collision.ParticleContactDetector;
 import io.scottd.fizz2d.force_generator.ConstantParticleForceGenerator;
 import io.scottd.fizz2d.force_generator.ParticleForceRegistry;
-import io.scottd.fizz2d.model.Vector2;
+import io.scottd.fizz2d.Vector2;
+import io.scottd.fizz2d.force_generator.ParticleSpringForceGenerator;
+import io.scottd.fizz2d.model.Particle;
 import io.scottd.fizz2d.world.World;
 import io.scottd.fizz2d.world.WorldConfiguration;
 import io.scottd.fizz2d.world.integrators.Eulers;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
 import io.scottd.fizz2d.world.integrators.ImprovedEulers;
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.AbstractGameView;
-import io.scottd.fizz2ddemos.bouncingBallDemo.views.game.Ball;
-import io.scottd.fizz2ddemos.utils.JEasyFrame;
+import io.scottd.fizz2ddemos.GameLoopRunnable;
+import io.scottd.fizz2ddemos.AbstractGameView;
+import io.scottd.fizz2ddemos.bouncingBallDemo.views.Ball;
+import io.scottd.fizz2ddemos.JEasyFrame;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -63,11 +66,16 @@ public final class BouncingBallsDemo implements MouseListener {
     }
 
     private void setupGame() {
-        setupBall(new Vector2(70, 30), new Vector2(5, 0), new ImprovedEulers(), Color.RED);
-        setupBall(new Vector2(30, 30), new Vector2(5, 0), new Eulers(), Color.BLUE);
+        Ball ball1 = setupBall(new Vector2(48, 30), new Vector2(0, 0), new ImprovedEulers(), Color.RED);
+        Ball ball2 = setupBall(new Vector2(30, 30), new Vector2(0, 0), new Eulers(), Color.BLUE);
+
+        Particle p1 = ball1.getParticle();
+        Particle p2 = ball2.getParticle();
+        world.registerParticleForceGenerator(p1, new ParticleSpringForceGenerator(p2, 3, 15));
+        world.registerParticleForceGenerator(p2, new ParticleSpringForceGenerator(p1, 3, 15));
     }
 
-    private void setupBall(Vector2 initialPosition, Vector2 initialVelocity, IUpdateIntegrator integrator, Color color) {
+    private Ball setupBall(Vector2 initialPosition, Vector2 initialVelocity, IUpdateIntegrator integrator, Color color) {
         Ball ball = new Ball(viewScale.x, viewScale.y, color, RESOLUTION_Y);
         ball.getParticle().getPosition().set(initialPosition);
         ball.getParticle().getVelocity().set(initialVelocity);
@@ -75,6 +83,7 @@ public final class BouncingBallsDemo implements MouseListener {
         world.registerParticleForceGenerator(ball.getParticle(), new ConstantParticleForceGenerator(new Vector2(0, -9.8)));
         world.addGameObjects(ball.getParticles());
         view.registerGameComponent(ball);
+        return ball;
     }
 
     @Override

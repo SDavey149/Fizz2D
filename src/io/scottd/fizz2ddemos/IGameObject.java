@@ -1,4 +1,4 @@
-package io.scottd.fizz2ddemos.bouncingBallDemo.views.game;
+package io.scottd.fizz2ddemos;
 
 
 import io.scottd.fizz2d.model.Particle;

@@ -1,4 +1,4 @@
-package io.scottd.fizz2ddemos.utils;
+package io.scottd.fizz2ddemos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,6 @@ public class JEasyFrame extends JFrame {
     public final static GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
     public final static GraphicsDevice device = env.getScreenDevices()[0];
     public static final Rectangle SCREEN = device.getDefaultConfiguration().getBounds();
-    public static final double SCREEN_RATIO = SCREEN.width/SCREEN.height;
 
     public JEasyFrame(JComponent comp, String title) {
         super(title);
