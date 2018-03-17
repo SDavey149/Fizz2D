@@ -1,0 +1,3 @@
+[![Build Status](https://travis-ci.org/SDavey149/Fizz2D.svg?branch=master)](https://travis-ci.org/SDavey149/Fizz2D)
+
+A very incomplete 2D physics engine...
