@@ -1,5 +1,7 @@
 package io.scottd.fizz2ddemos;
 
+import io.scottd.fizz2d.Vector2;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -10,9 +12,15 @@ import java.util.List;
  */
 public abstract class AbstractGameView extends JComponent {
     private List<IGameComponent> gameComponents;
+    protected int resolutionX, resolutionY;
+    protected Vector2 scale;
 
-    public AbstractGameView() {
+
+    public AbstractGameView(int resolutionX, int resolutionY, Vector2 scale) {
         this.gameComponents = new ArrayList<>(10);
+        this.resolutionX = resolutionX;
+        this.resolutionY = resolutionY;
+        this.scale = scale;
     }
 
     public abstract void setupGameComponents();

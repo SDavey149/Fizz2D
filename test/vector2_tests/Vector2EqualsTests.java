@@ -13,16 +13,10 @@ public class Vector2EqualsTests {
     }
 
     @Test
-    public void testVector2NotEqualToNull() {
-        Vector2 v = new Vector2(2, 3);
-        Assert.assertFalse(v.equals(null));
-    }
-
-    @Test
     public void testVector2NotEqualToDifferentType() {
         Vector2 v = new Vector2(1, 1);
         Object randomObject = new Object();
-        Integer randomInteger = new Integer(5);
+        Integer randomInteger = 5;
 
         Assert.assertNotEquals(v, randomObject);
         Assert.assertNotEquals(v, randomInteger);

@@ -1,4 +1,4 @@
-package io.scottd.fizz2ddemos.bouncingBallDemo.views;
+package io.scottd.fizz2ddemos.views;
 
 import io.scottd.fizz2ddemos.IGameComponent;
 

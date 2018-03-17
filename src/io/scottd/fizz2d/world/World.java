@@ -1,7 +1,7 @@
 package io.scottd.fizz2d.world;
 
+import io.scottd.fizz2d.contact.Contact;
 import io.scottd.fizz2d.force_generator.IParticleForceGenerator;
-import io.scottd.fizz2d.model.ParticleContact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,8 @@ public class World {
     }
 
     public void addGameObjects(Particle[] particles) {
-        for (int i = 0; i < particles.length; i++) {
-            addGameObject(particles[i]);
+        for (Particle particle : particles) {
+            addGameObject(particle);
         }
     }
 
@@ -59,8 +59,14 @@ public class World {
             particle.update(delta);
             worldBoundaryCheck(particle);
         }
-        List<ParticleContact> particleCollisions = worldConfiguration.particleContactDetector.getParticleToParticleContacts(particles);
-        worldConfiguration.particleContactResolver.resolveParticleContacts(particleCollisions);
+        List<Contact> particleCollisions = worldConfiguration.contactDetectorRegistry.getContacts(particles);
+        resolveContacts(particleCollisions);
+    }
+
+    private static void resolveContacts(List<Contact> contacts) {
+        for (Contact contact : contacts) {
+            contact.resolve();
+        }
     }
 
     //TODO: should be moved to io.scottd.fizz2d.force_generator contact detector

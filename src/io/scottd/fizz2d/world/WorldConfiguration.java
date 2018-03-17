@@ -1,7 +1,6 @@
 package io.scottd.fizz2d.world;
 
-import io.scottd.fizz2d.collision.IParticleContactDetector;
-import io.scottd.fizz2d.collision.IParticleContactResolver;
+import io.scottd.fizz2d.contact.ContactDetectorRegistry;
 import io.scottd.fizz2d.force_generator.ParticleForceRegistry;
 import io.scottd.fizz2d.Vector2;
 
@@ -11,8 +10,7 @@ import io.scottd.fizz2d.Vector2;
 public class WorldConfiguration {
     public int eulerUpdates;
     public Vector2 worldSize;
-    public IParticleContactDetector particleContactDetector;
-    public IParticleContactResolver particleContactResolver;
+    public ContactDetectorRegistry contactDetectorRegistry;
     public ParticleForceRegistry particleForceRegistry;
 
 }

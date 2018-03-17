@@ -1,4 +1,4 @@
-package io.scottd.fizz2ddemos.bouncingBallDemo.views;
+package io.scottd.fizz2ddemos.views;
 
 import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
@@ -35,10 +35,6 @@ public class Ball implements IGameComponent, IGameObject {
         g.setColor(color);
         double radius = particle.getRadius() * Math.min(yScale, xScale);
         g.fillOval((int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius));
-    }
-
-    public void setIntegrator(IUpdateIntegrator integrator) {
-        particle.setIntegrator(integrator);
     }
 
     @Override
