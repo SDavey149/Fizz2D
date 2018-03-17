@@ -1,7 +1,7 @@
 package io.scottd.fizz2d.force_generator;
 
 import io.scottd.fizz2d.Vector2;
-import io.scottd.fizz2d.model.Particle;
+import io.scottd.fizz2d.world.Particle;
 
 public class AnchoredSpringForceGenerator implements IParticleForceGenerator {
     protected Vector2 otherPoint;

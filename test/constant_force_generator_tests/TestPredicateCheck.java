@@ -1,7 +1,7 @@
 package constant_force_generator_tests;
 
 import io.scottd.fizz2d.force_generator.ConstantParticleForceGenerator;
-import io.scottd.fizz2d.model.Particle;
+import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.Vector2;
 import org.junit.Assert;
 import org.junit.Test;

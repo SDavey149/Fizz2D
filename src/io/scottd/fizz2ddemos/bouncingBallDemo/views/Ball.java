@@ -1,6 +1,6 @@
 package io.scottd.fizz2ddemos.bouncingBallDemo.views;
 
-import io.scottd.fizz2d.model.Particle;
+import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
 import io.scottd.fizz2ddemos.IGameComponent;
 import io.scottd.fizz2ddemos.IGameObject;

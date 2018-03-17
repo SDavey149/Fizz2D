@@ -6,7 +6,7 @@ import io.scottd.fizz2d.force_generator.ConstantParticleForceGenerator;
 import io.scottd.fizz2d.force_generator.ParticleForceRegistry;
 import io.scottd.fizz2d.Vector2;
 import io.scottd.fizz2d.force_generator.ParticleSpringForceGenerator;
-import io.scottd.fizz2d.model.Particle;
+import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.world.World;
 import io.scottd.fizz2d.world.WorldConfiguration;
 import io.scottd.fizz2d.world.integrators.Eulers;

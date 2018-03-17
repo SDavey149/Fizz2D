@@ -1,7 +1,6 @@
 package io.scottd.fizz2d.world;
 
 import io.scottd.fizz2d.force_generator.IParticleForceGenerator;
-import io.scottd.fizz2d.model.Particle;
 import io.scottd.fizz2d.model.ParticleContact;
 
 import java.util.ArrayList;
