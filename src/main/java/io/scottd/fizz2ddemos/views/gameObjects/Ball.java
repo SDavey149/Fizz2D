@@ -1,4 +1,4 @@
-package io.scottd.fizz2ddemos.views;
+package io.scottd.fizz2ddemos.views.gameObjects;
 
 import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
@@ -10,18 +10,14 @@ import java.awt.*;
 /**
  * Created by scottdavey on 16/04/2017.
  */
-public class Ball implements IGameComponent, IGameObject {
-    private double xScale, yScale;
+public class Ball extends GameObjectComponent implements IGameComponent, IGameObject {
     private Particle particle;
     private Color color;
-    private int yMaxResolution;
 
-    public Ball(double xScale, double yScale, Color color, int yMaxResolution) {
+    public Ball(double xScale, double yScale, int yMaxResolution, Color color) {
+        super(xScale, yScale, yMaxResolution);
         particle = new Particle(2, 1);
-        this.xScale = xScale;
-        this.yScale = yScale;
         this.color = color;
-        this.yMaxResolution = yMaxResolution;
     }
 
     public Particle getParticle() {
@@ -30,8 +26,8 @@ public class Ball implements IGameComponent, IGameObject {
 
     @Override
     public void draw(Graphics2D g) {
-        int x = (int) (particle.getPosition().x * xScale);
-        int y = (int) (yMaxResolution - particle.getPosition().y * yScale);
+        int x = getScreenXFromGameX(particle.getPosition().x);
+        int y = getScreenYFromGameY(particle.getPosition().y);
         g.setColor(color);
         double radius = particle.getRadius() * Math.min(yScale, xScale);
         g.fillOval((int) (x - radius), (int) (y - radius), (int) (2 * radius), (int) (2 * radius));

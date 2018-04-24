@@ -13,7 +13,8 @@ import io.scottd.fizz2d.world.integrators.IUpdateIntegrator;
 import io.scottd.fizz2d.world.integrators.ImprovedEulers;
 import io.scottd.fizz2ddemos.AbstractGameDemo;
 import io.scottd.fizz2ddemos.JEasyFrame;
-import io.scottd.fizz2ddemos.views.Ball;
+import io.scottd.fizz2ddemos.views.gameObjects.Ball;
+import io.scottd.fizz2ddemos.views.gameObjects.Line;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -56,18 +57,23 @@ public final class BouncingBallsDemo extends AbstractGameDemo implements MouseLi
         //Particle p1 = ball1.getParticle();
         Particle p2 = ball2.getParticle();
         //TODO: Anchor point and ball at same point breaks stuff - write a test for this
-        world.registerParticleForceGenerator(p2, new AnchoredSpringForceGenerator(new Vector2(30, 30), 2, 2));
+        world.registerParticleForceGenerator(p2, new AnchoredSpringForceGenerator(
+                new Vector2(30, 30), 2, 2));
+        Line line = new Line(viewScale.x, viewScale.y, RESOLUTION_Y, new Vector2(30, 30),
+                p2.getPosition());
+        view.registerGameComponent(line);
         //world.registerParticleForceGenerator(p2, new ParticleSpringForceGenerator(p1, 3, 15));
     }
 
     private Ball setupBall(Vector2 initialPosition, Vector2 initialVelocity, IUpdateIntegrator integrator, Color color) {
-        Ball ball = new Ball(viewScale.x, viewScale.y, color, RESOLUTION_Y);
+        Ball ball = new Ball(viewScale.x, viewScale.y, RESOLUTION_Y, color);
         Particle particle = ball.getParticle();
         particle.getPosition().set(initialPosition);
         particle.getVelocity().set(initialVelocity);
         particle.setIntegrator(integrator);
 
-        world.registerParticleForceGenerator(ball.getParticle(), new ConstantParticleForceGenerator(new Vector2(0, -9.8)));
+        world.registerParticleForceGenerator(ball.getParticle(),
+                new ConstantParticleForceGenerator(new Vector2(0, -9.8)));
         world.addGameObjects(ball.getParticles());
         view.registerGameComponent(ball);
         return ball;
