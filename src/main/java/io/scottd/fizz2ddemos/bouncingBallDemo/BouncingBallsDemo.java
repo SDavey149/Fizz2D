@@ -6,6 +6,7 @@ import io.scottd.fizz2d.contact.ParticleContactDetector;
 import io.scottd.fizz2d.force_generator.AnchoredSpringForceGenerator;
 import io.scottd.fizz2d.force_generator.ConstantParticleForceGenerator;
 import io.scottd.fizz2d.force_generator.ParticleForceRegistry;
+import io.scottd.fizz2d.force_generator.ParticleSpringForceGenerator;
 import io.scottd.fizz2d.world.Particle;
 import io.scottd.fizz2d.world.WorldConfiguration;
 import io.scottd.fizz2d.world.integrators.Eulers;
@@ -23,18 +24,25 @@ import java.awt.event.MouseListener;
 /**
  * Created by scottdavey on 11/04/2017.
  */
-public final class BouncingBallsDemo extends AbstractGameDemo implements MouseListener {
+public final class BouncingBallsDemo extends AbstractGameDemo {
+
+    private PlayerController playerController;
 
     public static void main(String[] args) {
-        BouncingBallsDemo demo = new BouncingBallsDemo();
+        BouncingBallsDemo demo = new BouncingBallsDemo(800, 600);
         JEasyFrame frame = new JEasyFrame(demo.view, "Bouncing Ball Demo");
         frame.setSize(800, 625);
         demo.gameLoop();
     }
 
-    private BouncingBallsDemo() {
-        super();
-        view.addMouseListener(this);
+    private BouncingBallsDemo(int resolutionX, int resolutionY) {
+        super(resolutionX, resolutionY);
+        initialisePlayerController();
+    }
+
+    private void initialisePlayerController() {
+        playerController = new PlayerController(this);
+        view.addMouseListener(playerController);
     }
 
     @Override
@@ -51,22 +59,22 @@ public final class BouncingBallsDemo extends AbstractGameDemo implements MouseLi
 
     @Override
     protected void setupGame() {
-        //Ball ball1 = setupBall(new Vector2(48, 30), new Vector2(-5, 0), new ImprovedEulers(), Color.RED);
+        Ball ball1 = setupBall(new Vector2(48, 30), new Vector2(-5, 0), new ImprovedEulers(), Color.RED);
         Ball ball2 = setupBall(new Vector2(30, 32), new Vector2(0, 0), new Eulers(), Color.BLUE);
 
-        //Particle p1 = ball1.getParticle();
+        Particle p1 = ball1.getParticle();
         Particle p2 = ball2.getParticle();
         //TODO: Anchor point and ball at same point breaks stuff - write a test for this
-        world.registerParticleForceGenerator(p2, new AnchoredSpringForceGenerator(
-                new Vector2(30, 30), 2, 2));
-        Line line = new Line(viewScale.x, viewScale.y, RESOLUTION_Y, new Vector2(30, 30),
+        //world.registerParticleForceGenerator(p2, new AnchoredSpringForceGenerator(
+                //new Vector2(30, 30), 2, 2));
+        world.registerParticleForceGenerator(p2, new ParticleSpringForceGenerator(p1, 3, 15));
+        Line line = new Line(viewScale.x, viewScale.y, resolutionY, p1.getPosition(),
                 p2.getPosition());
         view.registerGameComponent(line);
-        //world.registerParticleForceGenerator(p2, new ParticleSpringForceGenerator(p1, 3, 15));
     }
 
-    private Ball setupBall(Vector2 initialPosition, Vector2 initialVelocity, IUpdateIntegrator integrator, Color color) {
-        Ball ball = new Ball(viewScale.x, viewScale.y, RESOLUTION_Y, color);
+    protected Ball setupBall(Vector2 initialPosition, Vector2 initialVelocity, IUpdateIntegrator integrator, Color color) {
+        Ball ball = new Ball(viewScale.x, viewScale.y, resolutionY, color);
         Particle particle = ball.getParticle();
         particle.getPosition().set(initialPosition);
         particle.getVelocity().set(initialVelocity);
@@ -77,32 +85,5 @@ public final class BouncingBallsDemo extends AbstractGameDemo implements MouseLi
         world.addGameObjects(ball.getParticles());
         view.registerGameComponent(ball);
         return ball;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        Vector2 position = new Vector2(e.getX(), RESOLUTION_Y-e.getY());
-        position.divide(viewScale);
-        setupBall(position, new Vector2(0, 0), new ImprovedEulers(), Color.GREEN);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }
